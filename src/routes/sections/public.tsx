@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { lazy, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import NavBarMobile from '@/layouts/appbar/nav-bar-mobile';
+import NavBarPublic from '@/layouts/appbar/nav-bar-public';
 
 import { PublicGuard } from 'src/routes/guards/public-guard';
 
@@ -21,7 +21,7 @@ const publicRoutes = [
     element: (
       <PublicGuard>
         <Suspense fallback={<SplashScreen />}>
-          <NavBarMobile />
+          <NavBarPublic />
           <Outlet />
         </Suspense>
       </PublicGuard>

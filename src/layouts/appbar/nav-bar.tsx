@@ -1,6 +1,7 @@
 import Logo from '@/components/logo';
 import Row from '@/components/core/row';
 import { useRouter } from '@/routes/hooks';
+import { useResponsive } from '@/hooks/use-responsive';
 
 import { Button } from '@mui/material';
 
@@ -32,27 +33,30 @@ const navList = [
 const NavBar: React.FC<Props> = () => {
   const router = useRouter();
 
+  const isMobile = useResponsive('down', 'md');
+
   return (
     <NavBarWrapper>
       {/* Logo */}
       <Logo
         sx={{
-          fontSize: 24,
+          fontSize: isMobile ? 16 : 24,
         }}
       />
+      {!isMobile && (
+        <Row marginLeft={'auto'} marginRight={4} alignItems={'center'} justifyContent={'center'}>
+          {/* Nav links */}
+          {navList.map((i) => {
+            return (
+              <Button key={i.label} onClick={() => router.push(i.href)}>
+                {i.label}
+              </Button>
+            );
+          })}
+        </Row>
+      )}
 
-      <Row marginX={'auto'}>
-        {/* Nav links */}
-        {navList.map((i) => {
-          return (
-            <Button key={i.label} onClick={() => router.push(i.href)}>
-              {i.label}
-            </Button>
-          );
-        })}
-      </Row>
-
-      <Row marginLeft={'auto'} gap={1}>
+      <Row gap={1}>
         <SettingsButton />
 
         <AccountPopover />

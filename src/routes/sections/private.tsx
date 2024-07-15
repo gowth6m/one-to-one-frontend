@@ -27,6 +27,7 @@ export const dashboardRoutes = [
         <>
           <Suspense fallback={<LoadingScreen />}>
             <NavBar />
+
             <Outlet />
           </Suspense>
         </>

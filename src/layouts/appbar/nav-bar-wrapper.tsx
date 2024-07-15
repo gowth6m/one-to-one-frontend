@@ -34,6 +34,7 @@ const NavBarWrapper: React.FC<Props> = ({ children }) => {
       {/* Invisible height for appbar */}
       <Box
         sx={{
+          mb: 2,
           height: {
             xs: 64,
             md: 64,

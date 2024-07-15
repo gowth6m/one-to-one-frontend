@@ -6,7 +6,7 @@ import SettingsButton from '../common/settings-button';
 
 interface Props {}
 
-const NavBarMobile: React.FC<Props> = () => {
+const NavBarPublic: React.FC<Props> = () => {
   return (
     <NavBarWrapperMobile>
       {/* Logo */}
@@ -25,4 +25,4 @@ const NavBarMobile: React.FC<Props> = () => {
   );
 };
 
-export default NavBarMobile;
+export default NavBarPublic;
