@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { lazy, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+import NavBar from '@/layouts/appbar/nav-bar';
 
 import { LoadingScreen } from 'src/components/loading-screen';
 
@@ -21,6 +22,7 @@ export const dashboardRoutes = [
       <PrivateGuard>
         <>
           <Suspense fallback={<LoadingScreen />}>
+            <NavBar />
             <Outlet />
           </Suspense>
         </>

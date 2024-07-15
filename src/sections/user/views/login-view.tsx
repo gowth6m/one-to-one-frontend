@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import Logo from '@/components/logo';
-import { useRouter } from '@/routes/hooks';
 import { useAuthContext } from '@/sections/auth';
 import CoreButton from '@/components/core/core-button';
 import { CoreApiError } from '@/services/responses.model';
-import { useSettingsContext } from '@/components/settings';
 import { LoadingTopbar } from '@/components/loading-screen';
 import FormikTextfield from '@/components/core/formik/formik-textfield';
 
-import { Box, Container } from '@mui/material';
+import { Box, Alert, Container } from '@mui/material';
 
 // ----------------------------------------------------------------------------
 
@@ -18,10 +16,8 @@ export type LoginState = 'initial' | 'error';
 // ----------------------------------------------------------------------------
 
 const LoginView = () => {
-  const router = useRouter();
-  const settings = useSettingsContext();
-  const { currentSessionQuery, loginMutation } = useAuthContext();
-  const [errorMap, setErrorMap] = useState<CoreApiError[]>([]);
+  const { loginMutation } = useAuthContext();
+  const [errorMap] = useState<CoreApiError[]>([]);
 
   // ------ FORMIK ----------------------------------------------------------------
 
@@ -55,7 +51,15 @@ const LoginView = () => {
     >
       {loginMutation.isLoading && <LoadingTopbar />}
 
-      <Box sx={{ mb: 4, width: '100%' }}>
+      <Box
+        sx={{
+          mb: 0,
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
         <Logo />
       </Box>
 
@@ -69,7 +73,6 @@ const LoginView = () => {
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
-          gap: 2,
         }}
       >
         <FormikTextfield formik={formik} field="email" label="Email" errorMap={errorMap} />
@@ -86,12 +89,24 @@ const LoginView = () => {
           buttonVariant="primary"
           buttonWidth="full"
           type={'submit'}
+          disabled={loginMutation.isLoading}
           sx={{
-            mt: 1,
+            mt: 0.5,
           }}
         >
           Login
         </CoreButton>
+
+        {loginMutation.isError && (
+          <Alert
+            severity="error"
+            sx={{
+              mt: 2,
+            }}
+          >
+            Error logging you in.
+          </Alert>
+        )}
       </Box>
     </Container>
   );

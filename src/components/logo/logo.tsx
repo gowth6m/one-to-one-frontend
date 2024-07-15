@@ -22,11 +22,16 @@ const Logo = forwardRef<HTMLDivElement, LogoProps>(
           height: 40,
           display: 'inline-flex',
           cursor: 'pointer',
+          alignItems: 'center',
+          letterSpacing: 0,
+          lineHeight: 1,
+          fontWeight: 900,
+          fontSize: 36,
           ...sx,
         }}
         {...other}
       >
-        OneToOne
+        One To One
       </Box>
     );
 

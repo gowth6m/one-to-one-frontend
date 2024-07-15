@@ -2,7 +2,6 @@ import { FormikProps } from 'formik';
 import StaticData from '@/utils/data';
 import { FC, ChangeEvent } from 'react';
 import useErrorHandler from '@/hooks/use-error-handler';
-import { transformForTestLocator } from '@/utils/format';
 import { CoreApiError } from '@/services/responses.model';
 
 import { Box, SxProps, TextField, Autocomplete } from '@mui/material';
@@ -57,7 +56,7 @@ const FormikCountrySelect: FC<Props> = ({
 
   return (
     <Autocomplete
-      id={id ?? `country-select-${transformForTestLocator(field)}`}
+      id={id ?? `country-select`}
       fullWidth={fullWidth}
       value={
         getNestedObject(formik.values, field)

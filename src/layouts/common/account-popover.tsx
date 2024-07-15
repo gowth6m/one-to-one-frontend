@@ -1,6 +1,5 @@
 import { m } from 'framer-motion';
 import Iconify from '@/components/iconify';
-import { AppConfig } from '@/config/config-app';
 import { useAuthContext } from '@/sections/auth';
 import { RouterLink } from '@/routes/components';
 
@@ -40,11 +39,6 @@ export default function AccountPopover() {
       label: 'Profile',
       linkTo: `/user/${session?.id}`,
       icon: 'solar:user-bold',
-    },
-    {
-      label: 'Support',
-      linkTo: AppConfig.knowledgeBaseSupportLink,
-      icon: 'solar:question-circle-bold',
     },
   ];
 

@@ -45,6 +45,7 @@ export default function HeaderSimple() {
         <Logo
           sx={{
             p: 1,
+            fontSize: 24,
           }}
         />
 

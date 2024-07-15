@@ -26,7 +26,7 @@ export function AuthProvider({
 
   const [session, setSession] = useState<AuthSession | null>(useMockSession ? mockSession : null);
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { state, update, reset } = useLocalStorage(STORAGE_KEY, {
     bearer: null,
@@ -38,7 +38,7 @@ export function AuthProvider({
   const currentSessionQuery = useQuery({
     queryKey: ['currentSession'],
     queryFn: async () => {
-      console.log('currentSessionQuery', state.bearer);
+      setIsLoading(true);
       state.bearer && ApiClient.setAuthToken({ type: 'Bearer', token: state.bearer });
       return await ApiClient.auth.currentSession();
     },

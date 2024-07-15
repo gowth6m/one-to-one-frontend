@@ -17,7 +17,7 @@ const styles = {
     zIndex: 1400,
   },
   LinearProgress: {
-    height: 2.5,
+    height: 4,
   },
 };
 

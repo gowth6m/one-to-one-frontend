@@ -1,6 +1,5 @@
 import { FormikProps } from 'formik';
 import useErrorHandler from '@/hooks/use-error-handler';
-import { transformForTestLocator } from '@/utils/format';
 import { CoreApiError } from '@/services/responses.model';
 
 import { SxProps } from '@mui/material';
@@ -64,7 +63,6 @@ const FormikDateField: React.FC<Props> = ({
         required={required}
         variant={variant}
         inputProps={{ readOnly: readOnly }}
-        id={transformForTestLocator(field)}
         name={field}
         label={label}
         disabled={disabled}

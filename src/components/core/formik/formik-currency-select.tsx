@@ -2,7 +2,6 @@ import { FormikProps } from 'formik';
 import StaticData from '@/utils/data';
 import { FC, ChangeEvent } from 'react';
 import useErrorHandler from '@/hooks/use-error-handler';
-import { transformForTestLocator } from '@/utils/format';
 import { CoreApiError } from '@/services/responses.model';
 
 import { Box, SxProps, TextField, Autocomplete } from '@mui/material';
@@ -63,7 +62,7 @@ const FormikCurrencySelect: FC<Props> = ({
 
   return (
     <Autocomplete
-      id={id ?? `currency-select-${transformForTestLocator(field)}`}
+      id={id ?? `currency-select`}
       fullWidth={fullWidth}
       value={
         defaultCurrency
