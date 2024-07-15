@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { lazy, Suspense } from 'react';
+import NavBarMobile from '@/layouts/appbar/nav-bar-mobile';
 
 import { PublicGuard } from 'src/routes/guards/public-guard';
 
@@ -18,6 +19,7 @@ const publicRoutes = [
     element: (
       <PublicGuard>
         <Suspense fallback={<SplashScreen />}>
+          <NavBarMobile />
           <LoginPage />
         </Suspense>
       </PublicGuard>

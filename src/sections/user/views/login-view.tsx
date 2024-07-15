@@ -73,6 +73,7 @@ const LoginView = () => {
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
+          mb: 20,
         }}
       >
         <FormikTextfield formik={formik} field="email" label="Email" errorMap={errorMap} />

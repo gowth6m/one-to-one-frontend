@@ -26,7 +26,7 @@ export default defineConfig(function (_a) {
       host: '0.0.0.0',
     },
     build: {
-      outDir: 'out',
+      outDir: 'dist',
     },
     base: '/',
   };
