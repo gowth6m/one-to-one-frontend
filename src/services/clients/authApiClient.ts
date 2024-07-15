@@ -18,7 +18,6 @@ export default class AuthApiClient {
     password: string;
   }): Promise<AxiosResponse<CoreApiResponse<LoginResponse>>> {
     const payload = {
-
       email,
       password,
     };

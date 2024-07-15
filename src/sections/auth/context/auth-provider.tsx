@@ -38,6 +38,7 @@ export function AuthProvider({
   const currentSessionQuery = useQuery({
     queryKey: ['currentSession'],
     queryFn: async () => {
+      console.log('currentSessionQuery', state.bearer);
       state.bearer && ApiClient.setAuthToken({ type: 'Bearer', token: state.bearer });
       return await ApiClient.auth.currentSession();
     },
@@ -45,6 +46,7 @@ export function AuthProvider({
     onSuccess: (res) => {
       setSession(res.data.data);
     },
+    enabled: state.bearer !== null,
   });
 
   // ------------------------------------------------

@@ -1,25 +1,17 @@
 import { useState } from 'react';
-import { AxiosError } from 'axios';
 import { useFormik } from 'formik';
 import Logo from '@/components/logo';
-import { useMutation } from 'react-query';
 import { useRouter } from '@/routes/hooks';
-import ApiClient from '@/services/appClient';
 import { useAuthContext } from '@/sections/auth';
 import CoreButton from '@/components/core/core-button';
+import { CoreApiError } from '@/services/responses.model';
 import { useSettingsContext } from '@/components/settings';
 import { LoadingTopbar } from '@/components/loading-screen';
 import FormikTextfield from '@/components/core/formik/formik-textfield';
-import { CoreApiError, CoreApiResponse } from '@/services/responses.model';
 
 import { Box, Container } from '@mui/material';
 
 // ----------------------------------------------------------------------------
-
-type LoginResponse = CoreApiResponse<{
-  locked: boolean;
-  captchaRequired: boolean;
-}>;
 
 export type LoginState = 'initial' | 'error';
 
@@ -106,5 +98,3 @@ const LoginView = () => {
 };
 
 export default LoginView;
-
-const styles = {};
