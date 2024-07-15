@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import Logo from '@/components/logo';
 import { useAuthContext } from '@/sections/auth';
+import { RouterLink } from '@/routes/components';
 import CoreButton from '@/components/core/core-button';
 import { CoreApiError } from '@/services/responses.model';
 import { LoadingTopbar } from '@/components/loading-screen';
 import FormikTextfield from '@/components/core/formik/formik-textfield';
 
-import { Box, Alert, Container } from '@mui/material';
+import { Box, Link, Alert, Container, Typography } from '@mui/material';
 
 // ----------------------------------------------------------------------------
 
@@ -97,6 +98,17 @@ const LoginView = () => {
         >
           Login
         </CoreButton>
+
+        <Typography variant="body2" sx={{ mt: 2, textAlign: 'center' }}>
+          Don't have an account?{' '}
+          <Link
+            component={RouterLink}
+            href={'/user/register'}
+            style={{ textDecoration: 'none', fontWeight: 700 }}
+          >
+            Register
+          </Link>
+        </Typography>
 
         {loginMutation.isError && (
           <Alert

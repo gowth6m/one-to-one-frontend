@@ -1,5 +1,5 @@
 import { AxiosInstance, AxiosResponse } from 'axios';
-import { LoginResponse, CurrentResponse } from '@/sections/auth';
+import { LoginResponse, CurrentResponse, CreateUserPayload } from '@/sections/auth';
 
 import { CoreApiResponse } from '../responses.model';
 
@@ -27,5 +27,11 @@ export default class AuthApiClient {
 
   async currentSession(): Promise<AxiosResponse<CoreApiResponse<CurrentResponse>>> {
     return await this.base.get(`/user/current`);
+  }
+
+  async registerUser(
+    payload: CreateUserPayload
+  ): Promise<AxiosResponse<CoreApiResponse<CurrentResponse>>> {
+    return await this.base.post(`/user/create`, payload);
   }
 }

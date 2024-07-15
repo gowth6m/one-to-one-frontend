@@ -37,3 +37,10 @@ export interface LoginResponse {
 }
 
 export type CurrentResponse = AuthSession;
+
+export type CreateUserPayload = {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+};
