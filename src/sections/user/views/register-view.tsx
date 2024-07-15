@@ -2,7 +2,6 @@ import * as yup from 'yup';
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
-import Logo from '@/components/logo';
 import { useMutation } from 'react-query';
 import { useRouter } from '@/routes/hooks';
 import ApiClient from '@/services/appClient';
@@ -13,7 +12,7 @@ import { CoreApiError } from '@/services/responses.model';
 import { LoadingTopbar } from '@/components/loading-screen';
 import FormikTextfield from '@/components/core/formik/formik-textfield';
 
-import { Box, Link, Alert, Container, Typography } from '@mui/material';
+import { Box, Link, Alert, Badge, Container, Typography } from '@mui/material';
 
 // ----------------------------------------------------------------------------
 
@@ -40,14 +39,14 @@ const RegisterView = () => {
       });
     },
     validationSchema: yup.object().shape({
-      email: yup.string().email().required(),
-      password: yup.string().min(8).required(),
+      email: yup.string().email().required('Email is required'),
+      password: yup.string().min(8).required('Password is required'),
       confirmPassword: yup
         .string()
         .oneOf([yup.ref('password')], 'Passwords must match')
-        .required(),
-      firstName: yup.string().required(),
-      lastName: yup.string().required(),
+        .required('Password confirmation is required'),
+      firstName: yup.string().required('First name is required'),
+      lastName: yup.string().required('Last name is required'),
     }),
   });
 
@@ -80,17 +79,21 @@ const RegisterView = () => {
     >
       {registerMutation.isLoading && <LoadingTopbar />}
 
-      <Box
-        sx={{
-          mb: 0,
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Logo />
-      </Box>
+      <Badge badgeContent={'Join the fun 🎉'} color={'primary'}>
+        <Box
+          sx={{
+            mb: 0,
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Typography variant={'h2'} sx={{ fontWeight: 700 }}>
+            Register
+          </Typography>
+        </Box>
+      </Badge>
 
       <Box
         component={'form'}

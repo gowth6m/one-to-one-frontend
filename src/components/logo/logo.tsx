@@ -31,7 +31,7 @@ const Logo = forwardRef<HTMLDivElement, LogoProps>(
         }}
         {...other}
       >
-        One To One
+        One To Ones
       </Box>
     );
 

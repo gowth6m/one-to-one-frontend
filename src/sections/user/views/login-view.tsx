@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useFormik } from 'formik';
-import Logo from '@/components/logo';
 import { useAuthContext } from '@/sections/auth';
 import { RouterLink } from '@/routes/components';
 import CoreButton from '@/components/core/core-button';
@@ -8,7 +7,7 @@ import { CoreApiError } from '@/services/responses.model';
 import { LoadingTopbar } from '@/components/loading-screen';
 import FormikTextfield from '@/components/core/formik/formik-textfield';
 
-import { Box, Link, Alert, Container, Typography } from '@mui/material';
+import { Box, Link, Alert, Badge, Container, Typography } from '@mui/material';
 
 // ----------------------------------------------------------------------------
 
@@ -46,23 +45,32 @@ const LoginView = () => {
         alignItems: 'center',
         justifyContent: 'center',
         gap: 2,
-        height: '100vh',
         width: '100%',
       }}
     >
       {loginMutation.isLoading && <LoadingTopbar />}
 
-      <Box
+      <Badge
+        badgeContent={'Hello there 👋'}
+        color={'primary'}
         sx={{
-          mb: 0,
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          marginTop: { xs: 8, md: 16 },
         }}
       >
-        <Logo />
-      </Box>
+        <Box
+          sx={{
+            mb: 0,
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Typography variant={'h2'} sx={{ fontWeight: 700 }}>
+            Login
+          </Typography>
+        </Box>
+      </Badge>
 
       <Box
         component={'form'}
