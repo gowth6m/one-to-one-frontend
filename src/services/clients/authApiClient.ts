@@ -34,4 +34,20 @@ export default class AuthApiClient {
   ): Promise<AxiosResponse<CoreApiResponse<CurrentResponse>>> {
     return await this.base.post(`/user/create`, payload);
   }
+
+  async addReportee(reporteeId: number): Promise<AxiosResponse<CoreApiResponse<CurrentResponse>>> {
+    return await this.base.post(`/user/reportee`, { reporteeId });
+  }
+
+  async removeReportee(
+    reporteeId: number
+  ): Promise<AxiosResponse<CoreApiResponse<CurrentResponse>>> {
+    return await this.base.delete(`/user/reportee/${reporteeId}`);
+  }
+
+  async addReportsTo(
+    reportsToId: number
+  ): Promise<AxiosResponse<CoreApiResponse<CurrentResponse>>> {
+    return await this.base.post(`/user/reportsTo`, { reportsToId });
+  }
 }

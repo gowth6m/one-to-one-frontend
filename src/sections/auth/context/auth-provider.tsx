@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
-import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { useRouter } from '@/routes/hooks';
+import { useState, useEffect } from 'react';
 import ApiClient from '@/services/appClient';
 import { AppConfig } from '@/config/config-app';
 import { useQuery, useMutation } from 'react-query';
@@ -26,7 +26,9 @@ export function AuthProvider({
 
   const [session, setSession] = useState<AuthSession | null>(useMockSession ? mockSession : null);
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [loadedLocalStorage, setLoadedLocalStorage] = useState(false);
 
   const { state, update, reset } = useLocalStorage(STORAGE_KEY, {
     bearer: null,
@@ -35,18 +37,23 @@ export function AuthProvider({
 
   // ------------------------------------------------
 
+  useEffect(() => {
+    if (state.bearer) {
+      ApiClient.setAuthToken({ type: 'Bearer', token: state.bearer });
+    }
+    setLoadedLocalStorage(true);
+  }, [state.bearer]);
+
   const currentSessionQuery = useQuery({
     queryKey: ['currentSession'],
     queryFn: async () => {
-      setIsLoading(true);
-      state.bearer && ApiClient.setAuthToken({ type: 'Bearer', token: state.bearer });
       return await ApiClient.auth.currentSession();
     },
     onSettled: () => setIsLoading(false),
     onSuccess: (res) => {
       setSession(res.data.data);
     },
-    enabled: state.bearer !== null,
+    enabled: loadedLocalStorage,
   });
 
   // ------------------------------------------------

@@ -24,7 +24,7 @@ const NavBarWrapper: React.FC<Props> = ({ children }) => {
             alignItems: 'center',
             flexDirection: 'row',
             width: '100%',
-            px: 2,
+            px: 3,
           }}
         >
           {children}

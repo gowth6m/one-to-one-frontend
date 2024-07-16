@@ -13,7 +13,11 @@ interface Props {}
 
 const navList = [
   {
-    label: '1-2-1',
+    label: 'Dashboard',
+    href: '/dashboard',
+  },
+  {
+    label: '1-2-1s',
     href: '/one-to-ones',
   },
   {
@@ -56,7 +60,7 @@ const NavBar: React.FC<Props> = () => {
         </Row>
       )}
 
-      <Row gap={1}>
+      <Row gap={2}>
         <SettingsButton />
 
         <AccountPopover />

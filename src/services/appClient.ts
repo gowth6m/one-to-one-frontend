@@ -1,6 +1,8 @@
 import axios from 'axios';
 import AuthApiClient from '@/services/clients/authApiClient';
 
+import OneToOneApiClient from './clients/oneToOneApiClient';
+
 // ----------------------------------------------------------------------
 
 const base = axios.create({
@@ -26,6 +28,8 @@ class ApiClient {
   }
 
   static auth = new AuthApiClient(base);
+
+  static oneToOne = new OneToOneApiClient(base);
 }
 
 export default ApiClient;
