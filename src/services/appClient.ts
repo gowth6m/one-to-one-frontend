@@ -6,8 +6,8 @@ import OneToOneApiClient from './clients/oneToOneApiClient';
 // ----------------------------------------------------------------------
 
 const base = axios.create({
-  // baseURL: 'https://one-to-one-backend.vercel.app',
-  baseURL: 'http://localhost:8080',
+  baseURL: 'https://one-to-one-backend.vercel.app',
+  // baseURL: 'http://localhost:8080',
   headers: {
     'Content-Type': 'application/json',
   },
