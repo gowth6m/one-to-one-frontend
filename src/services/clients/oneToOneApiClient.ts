@@ -17,17 +17,23 @@ export default class OneToOneApiClient {
   async createWeeklyReport(
     payload: CreateWeeklyReportRequest
   ): Promise<AxiosResponse<CoreApiResponse<WeeklyReport>>> {
-    return await this.base.post(`/weekly-report/create`, payload);
+    return await this.base.post(`/one-to-one/create`, payload);
   }
 
   async getAllWeeklyReportsAsReportee(): Promise<AxiosResponse<CoreApiResponse<WeeklyReport[]>>> {
-    return await this.base.get(`/reportee/weekly-report/all`);
+    return await this.base.get(`/one-to-one/reportee/all`);
   }
 
   async updateWeeklyReportAsReportee(
-    payload: UpdateWeeklyReportRequest
+    payload: UpdateWeeklyReportRequest,
+    id: string
   ): Promise<AxiosResponse<CoreApiResponse<WeeklyReport>>> {
-    return await this.base.put(`/weekly-report/update`, payload);
+    const data = {
+      ...payload,
+      id: id,
+    };
+
+    return await this.base.put(`/one-to-one/reportee/update`, data);
   }
 
   async getWeeklyReportByWeekAndYearAsReportee(
@@ -38,7 +44,7 @@ export default class OneToOneApiClient {
     if (!!week && !!year) {
       query = `?week=${week}&year=${year}`;
     }
-    return await this.base.get(`/weekly-report/reportee${query}`);
+    return await this.base.get(`/one-to-one/reportee${query}`);
   }
 
   // --------- Reporting To ------------
@@ -46,6 +52,6 @@ export default class OneToOneApiClient {
   async getAllWeeklyReportsAsReportingTo(): Promise<
     AxiosResponse<CoreApiResponse<WeeklyReport[]>>
   > {
-    return await this.base.get(`/reporting/weekly-report/all`);
+    return await this.base.get(`/one-to-one/reports-to/all`);
   }
 }
