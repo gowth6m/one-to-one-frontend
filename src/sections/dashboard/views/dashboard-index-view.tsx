@@ -6,6 +6,7 @@ import { useRouter } from '@/routes/hooks';
 import ApiClient from '@/services/appClient';
 import Column from '@/components/core/column';
 import CoreButton from '@/components/core/core-button';
+import { LoadingTopbar } from '@/components/loading-screen';
 
 import {
   Card,
@@ -48,6 +49,7 @@ const DashboardIndexView = () => {
           paddingBottom: 3,
         }}
       >
+        {allReports.isLoading && <LoadingTopbar />}
         <Card>
           <CardHeader
             title="Your 1-2-1s"
@@ -82,32 +84,6 @@ const DashboardIndexView = () => {
             >
               1-2-1s
             </CoreButton>
-
-            {/* <Column gap={1}>
-              <Typography variant="h6">Last time you discussed</Typography>
-
-              <List dense>
-                <ListItem>
-                  <ListItemText primary="Your career goals" />
-                </ListItem>
-                <ListItem>
-                  <ListItemText primary="Your progress against your goals" />
-                </ListItem>
-                <ListItem>
-                  <ListItemText primary="Your development plan" />
-                </ListItem>
-              </List>
-            </Column>
-
-            <Column gap={1}>
-              <Typography variant="h6">Last time you discussed</Typography>
-
-              <List dense>
-                <ListItem>
-                  <ListItemText primary="You might have missed apples" />
-                </ListItem>
-              </List>
-            </Column> */}
           </Row>
         </Card>
 
