@@ -16,6 +16,7 @@ import {
   Alert,
   Divider,
   ListItem,
+  Skeleton,
   Container,
   CardHeader,
   Typography,
@@ -93,6 +94,12 @@ const DashboardIndexView = () => {
 
         {(allReports.data?.data === null || allReports.data?.data?.length === 0) && (
           <Alert severity="info">You have no past 1-2-1s</Alert>
+        )}
+
+        {allReports.isLoading && (
+          <Card>
+            <Skeleton variant="rectangular" height={300} />
+          </Card>
         )}
 
         {allReports.data?.data?.map((report) => (
