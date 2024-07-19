@@ -95,7 +95,7 @@ export default function useTable(props?: UseTableProps): ReturnType {
       totalRowsInPage: number;
       totalRowsFiltered: number;
     }) => {
-      const totalSelected = selected.length;
+      const totalSelected = selected?.length;
 
       setSelected([]);
 

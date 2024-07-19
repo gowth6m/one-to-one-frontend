@@ -41,7 +41,7 @@ const DashboardIndexView = () => {
     },
   });
 
-  const reports = allReports?.data?.data.length === 1 ? 'report' : 'reports';
+  const reports = allReports?.data?.data?.length === 1 ? 'report' : 'reports';
 
   return (
     <Container sx={{ mx: 'auto' }}>
@@ -68,7 +68,7 @@ const DashboardIndexView = () => {
               You are on week {thisWeek} / {thisYear}
               <br />
               <span style={{ fontSize: 14, color: 'grey' }}>
-                You have done {allReports?.data?.data ? allReports?.data?.data.length : 0}{' '}
+                You have done {allReports?.data?.data ? allReports?.data?.data?.length : 0}{' '}
                 {reports + ' '}
                 so far
               </span>
@@ -111,25 +111,29 @@ const DashboardIndexView = () => {
             <Divider />
             <Row padding={3}>
               <Column gap={1} flex={1}>
-                {report.goneWell.length > 0 && (
+                {report.goneWell?.length > 0 && (
                   <Column gap={1}>
                     <Typography variant="h6">Gone well</Typography>
                     <List dense>
-                      {report.goneWell.map((item) => (
-                        <ListItem key={item.label}>
-                          <ListItemIcon>
-                            <Iconify icon={'mdi:circle'} width={8} height={8} />
-                          </ListItemIcon>
-                          <ListItemText primary={item.label} />
-                        </ListItem>
-                      ))}
+                      {report.goneWell.map((item) => {
+                        if (item.label === '') return null;
+
+                        return (
+                          <ListItem key={item.label}>
+                            <ListItemIcon>
+                              <Iconify icon={'mdi:circle'} width={8} height={8} />
+                            </ListItemIcon>
+                            <ListItemText primary={item.label} />
+                          </ListItem>
+                        );
+                      })}
                     </List>
                   </Column>
                 )}
               </Column>
 
               <Column gap={1} flex={1}>
-                {report.challenges.length > 0 && (
+                {report.challenges?.length > 0 && (
                   <Column gap={1}>
                     <Typography variant="h6">Challenges</Typography>
                     <List dense>
