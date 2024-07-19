@@ -137,7 +137,7 @@ const DashboardIndexView = () => {
                   <Column gap={1}>
                     <Typography variant="h6">Challenges</Typography>
                     <List dense>
-                      {report.goneWell.map((item) => (
+                      {report.challenges.map((item) => (
                         <ListItem key={item.label}>
                           <ListItemIcon>
                             <Iconify icon={'mdi:circle'} width={8} height={8} />
